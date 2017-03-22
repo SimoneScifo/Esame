@@ -16,8 +16,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Activities.CreateActivity"/>
-        <activity android:name=".Activities.ViewActivity"/>
+        <activity android:name=".Activities.CreateActivity"
+            android:configChanges="orientation|density|screenSize"/>/>
+        <activity android:name=".Activities.ViewActivity"
+            android:configChanges="orientation|density|screenSize"/>/>
     </application>
 
 </manifest>

@@ -1,12 +1,16 @@
 package simone.it.esame.Models;
 
+import simone.it.esame.Database.DatabaseHandler;
+
 /**
  * Created by Simone on 16/03/2017.
  */
 
 public class Note {
     private int id;
-    private String title, date, text, color;
+    private String title, date, text;
+    private int color;
+
 
     public int getId() {
         return id;
@@ -40,11 +44,12 @@ public class Note {
         this.text = text;
     }
 
-    public String getColor() {
+    public int getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
+
 }

@@ -14,6 +14,13 @@ import simone.it.esame.Activities.ViewActivity;
 import simone.it.esame.Models.Note;
 import simone.it.esame.R;
 
+import static simone.it.esame.Activities.ViewActivity.NOTE_DATE_KEY;
+import static simone.it.esame.Activities.ViewActivity.NOTE_TEXT_KEY;
+import static simone.it.esame.Activities.ViewActivity.NOTE_TITLE_KEY;
+import static simone.it.esame.Activities.ViewActivity.REQUEST_DELETE;
+import static simone.it.esame.Activities.ViewActivity.REQUEST_EDIT;
+import static simone.it.esame.Activities.ViewActivity.REQUEST_NOTE;
+
 /**
  * Created by Simone on 16/03/2017.
  */
@@ -21,7 +28,16 @@ import simone.it.esame.R;
 public class NoteAdapter extends RecyclerView.Adapter <NoteAdapter.NoteVH> {
     ArrayList<Note> dataSet = new ArrayList<>();
     private int position;
+    private static NoteAdapter instance = new NoteAdapter();
 
+    private NoteAdapter()
+    {
+
+    }
+
+    public static NoteAdapter getInstance (){
+        return instance;
+    }
     public void addNote(Note item) {
         dataSet.add(0, item);
         notifyItemInserted(0);
@@ -93,7 +109,11 @@ public class NoteAdapter extends RecyclerView.Adapter <NoteAdapter.NoteVH> {
         @Override
         public void onClick(View v) {
             Intent i = new Intent(v.getContext(), CreateActivity.class);
-            (v.getContext()).startActivity(i);
+            i.putExtra(NOTE_TITLE_KEY, titleTV.getText().toString());
+            i.putExtra(NOTE_DATE_KEY, dateTV.getText().toString());
+            i.putExtra(NOTE_TEXT_KEY, textTV.getText().toString());
+            i.setFlags(REQUEST_EDIT);
+            ((ViewActivity)v.getContext()).startActivityForResult(i,REQUEST_NOTE);
         }
     }
 }
